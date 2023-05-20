@@ -22,14 +22,24 @@ const getRandomUser = async () => {
   addData(newUser)
 }
 
+// Double Everyone's money
 const doubleMoney = () => {
   data = data.map(user => {
-    return {...user, money: user.money * 2}
+    return {
+      ...user,
+      money: user.money * 2
+    }
   })
 
   updateDOM()
 }
 
+// Sort users by richest
+const sortByRichest = () => {
+  data.sort((a, b) => b.money - a.money)
+
+  updateDOM()
+}
 
 // add new obj to data arr
 const addData = (obj) => {
@@ -59,3 +69,4 @@ const formatMoney = (number) => {
 // Event listener
 addUserBtn.addEventListener('click', getRandomUser)
 doubleBtn.addEventListener('click', doubleMoney)
+sortBtn.addEventListener('click', sortByRichest)
