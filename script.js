@@ -19,14 +19,34 @@ const getRandomUser = async () => {
     money: Math.floor(Math.random() * 1000000)
   }
 
-  console.log(newUser)
+  addData(newUser)
 }
+
 
 // add new obj to data arr
 const addData = (obj) => {
   data.push(obj)
+
+  updateDOM()
 }
 
-getRandomUser()
-getRandomUser()
-getRandomUser()
+// Update DOM
+const updateDOM = (providedData = data) => {
+  // clear main div
+  main.innerHTML = '<h2><strong>Person</strong> Wealth</h2>';
+
+  providedData.forEach(item => {
+    const element = document.createElement('div')
+    element.classList.add('person')
+    element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(item.money)}`
+    main.appendChild(element)
+  })
+}
+
+// Format number as money
+const formatMoney = (number) => {
+  return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+}
+
+// Event listener
+addUserBtn.addEventListener('click', getRandomUser)
