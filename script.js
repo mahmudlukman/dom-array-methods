@@ -22,6 +22,14 @@ const getRandomUser = async () => {
   addData(newUser)
 }
 
+const doubleMoney = () => {
+  data = data.map(user => {
+    return {...user, money: user.money * 2}
+  })
+
+  updateDOM()
+}
+
 
 // add new obj to data arr
 const addData = (obj) => {
@@ -50,3 +58,4 @@ const formatMoney = (number) => {
 
 // Event listener
 addUserBtn.addEventListener('click', getRandomUser)
+doubleBtn.addEventListener('click', doubleMoney)
